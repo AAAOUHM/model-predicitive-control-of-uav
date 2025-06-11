@@ -1,38 +1,3 @@
-% function cost = ga_tuning(kk)
-% assignin('base','kk',kk);
-% sim('pidtunebyga.slx');
-% cost= itae(length(itae));
-% % only after we stop ga we acess k 
-% end
-% 
-% 
-% % 
-% % % % % % % % % % % % % % % % % % mtpmpc1_tuning
-% function cost = ga_tuning(k, x0, state2, control2, time2, p)% cost is energy  from efun and is itae from efun2
-%     % Run MTPMPC1TUNING with the given k
-% %     try
-%         [xx, u_cl, time_steps, k] = MTPMPC1TUNING(k, x0, state2, control2, time2);
-% %     catch e
-% %         fprintf('Error in MTPMPC1TUNING: %s\n', e.message);
-% %         energy = Inf;
-% %         return;
-% %     end
-% 
-%     % Trim xx to match the number of control steps
-%     mpciter = size(u_cl, 1);
-%     xx_trimmed = xx(:, 1:mpciter)';
-%     simout = [xx_trimmed u_cl]; % Combine states and controls for Efun
-% 
-%     % Compute the energy (fitness) using Efun
-%     try
-%         cost = Efun(time_steps, simout, p);%energy
-%     catch e
-%         fprintf('Error in Efun: %s\n', e.message);
-%         cost = Inf;
-%         return;
-%     end
-% end
-% 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 function cost = ga_tuning(k, x0, state2, control2, time2, p) % cost is energy from efun and is itae from efun2
     % k is a 14-element vector: k(1:12), k(17), k(18)
