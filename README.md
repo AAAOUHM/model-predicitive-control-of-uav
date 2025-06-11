@@ -1,5 +1,5 @@
-This MTech project is about the UAV quadcopters control using model predictive control. the mtp progress report has been uploaded where linear mpc was used .
-still the final report will soon be uploaded where a quadcopter is controlled by nonlinear mpc and the weights are tuned by genetic algorithm such that energy consumption for a mission completion is minimized/optimized. 
+This MTech project is about the UAV quadcopters control using model predictive control. the mtp progress report has been uploaded where linear mpc was used where performance wasnt great .
+so the final report will soon be uploaded where a quadcopter is controlled by nonlinear mpc and the weights are tuned by genetic algorithm such that energy consumption for a mission completion is minimized/optimized. we get much better results than linear mpc.
 all codes for the nonlinear mpc are given:
 1) first u need gpops software to run the trajectory generation code .
 2)run the genetic algorithm code to get the optimal parameters.(Q,R weights and N(prediction horizon))
