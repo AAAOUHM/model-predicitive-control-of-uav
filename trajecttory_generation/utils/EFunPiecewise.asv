@@ -1,0 +1,68 @@
+function [f]= EFunPiecewise(time2,state2,control2,p)
+simout.x13 = state2(:,13);
+simout.x14 = state2(:,14);
+simout.x15 = state2(:,15);
+simout.x16 = state2(:,16);
+simout.u1 = control2(:,1);
+simout.u2 = control2(:,2);
+simout.u3 = control2(:,3);
+simout.u4 = control2(:,4);
+
+
+
+
+
+E1 = 4*p.c4*time2(end)*ones(length(time2),1);
+P2 = p.c3*(simout.x13+simout.x14+simout.x15+simout.x16); 
+P3 = p.c2*(simout.x13.*simout.x13 + simout.x14.*simout.x14 + simout.x15.*simout.x15 + simout.x16.*simout.x16);
+P4 = p.c1*(simout.u1.*simout.u1 + simout.u2.*simout.u2 + simout.u3.*simout.u3 + simout.u4.*simout.u4);
+P5 = p.c7*(simout.x13.*simout.x13.*simout.x13 + simout.x14.*simout.x14.*simout.x14 + simout.x15.*simout.x15.*simout.x15 + simout.x16.*simout.x16.*simout.x16);
+P6 = p.c8*(simout.x13.*simout.x13.*simout.x13.*simout.x13 + simout.x14.*simout.x14.*simout.x14.*simout.x14 + simout.x15.*simout.x15.*simout.x15.*simout.x15 + simout.x16.*simout.x16.*simout.x16.*simout.x16);
+
+
+%fun1 = @(t,y) interp1(time2,P1,t);
+fun2 = @(t,y) interp1(time2,P2,t);
+fun3 = @(t,y) interp1(time2,P3,t);
+fun4 = @(t,y) interp1(time2,P4,t);
+fun5 = @(t,y) interp1(time2,P5,t);
+fun6 = @(t,y) interp1(time2,P6,t);
+
+%[t,E1] = ode45(fun1,time2',0);
+[t,E2] = ode45(fun2,time2',0);
+[~,E3] = ode45(fun3,time2',0);
+[~,E4] = ode45(fun4,time2',0);
+[~,E5] = ode45(fun5,time2',0);
+[~,E6] = ode45(fun6,time2',0);
+
+% f = [E1 E2 E3 E4 E5 E6];%E2 E3 E4 E5 E6
+
+
+%R1
+PR1 = p.c4 + p.c3*simout.x13 + p.c2*(simout.x13.*simout.x13) + p.c1*(simout.u1.*simout.u1) +p.c7*(simout.x13.*simout.x13.*simout.x13) + p.c8*(simout.x13.*simout.x13.*simout.x13.*simout.x13);
+funr1 = @(t,y) interp1(time2,PR1,t);
+[~,ER1] = ode45(funr1,time2',0);
+
+%R2
+PR2 = p.c4 + p.c3*simout.x14 + p.c2*(simout.x14.*simout.x14) + p.c1*(simout.u2.*simout.u2) +p.c7*(simout.x14.*simout.x14.*simout.x14) + p.c8*(simout.x14.*simout.x14.*simout.x14.*simout.x14);
+funr2 = @(t,y) interp1(time2,PR2,t);
+[~,ER2] = ode45(funr2,time2',0);
+
+%R3
+PR3 = p.c4 + p.c3*simout.x15 + p.c2*(simout.x15.*simout.x15) + p.c1*(simout.u3.*simout.u3) +p.c7*(simout.x15.*simout.x15.*simout.x15) + p.c8*(simout.x15.*simout.x15.*simout.x15.*simout.x15);
+funr3 = @(t,y) interp1(time2,PR3,t);
+[~,ER3] = ode45(funr3,time2',0);
+
+%R4
+PR4 = p.c4 + p.c3*simout.x16 + p.c2*(simout.x16.*simout.x16) + p.c1*(simout.u4.*simout.u4) +p.c7*(simout.x16.*simout.x16.*simout.x16) + p.c8*(simout.x16.*simout.x16.*simout.x16.*simout.x16);
+funr4 = @(t,y) interp1(time2,PR4,t);
+[~,ER4] = ode45(funr4,time2',0);
+
+
+
+%f = [E1 E2 E3 E4 E5 E6 ER1 ER2 ER3 ER4];
+f = PR1+PR2+PR3+PR4
+
+
+
+
+
