@@ -1,7 +1,8 @@
-This is an MTech Thsesis project about finding the least energy path for the UAV quadcopters using **PONYTRYAGINS PRINCIPLE** to solve fot the **OPTIMAL CONTROL LAW** .  Then we design the closed loop control using model predictive controller. We can see in the report that  linear parameter varying MPC (**LPV-MPC**) waasn't performance wasnt great .
-So next our quadcopter is controlled by Nonlinear mpc (**NMPC**) where the weights are tuned by **genetic algorithm** such that energy consumption for a mission completion is minimized/optimized. We have then experimented with various versions of the MPC objective functions.In all those cases we got far better results than linear mpc(LPV-MPC). Finally we selected the best objective function along  with tuned parameters that are giving best results in tracking . 
- A short ppt is there to refer to get a **HIGH LEVEL OVERVIEW**.
-All codes for the nonlinear mpc are given Iin following: 
-1) First u need **GPOPS** software to run the trajectory generation code(**leastenergymain.m**) .
-2) Second run the genetic algorithm (**ga_code.m**) to get the optimal parameters.(Q,R weights and N(prediction horizon)) .
-3) Finally u need **CASADI** software to the  run (**mtpmpc3tuning.m**) code (controller) and check the drone's trajectory . 
+This MTech thesis project focuses on determining the minimum-energy trajectory for UAV quadcopters by applying Pontryagin's Principle to derive the optimal control law. Subsequently, a closed-loop control system is designed using model predictive control (MPC). As detailed in the report, the linear parameter-varying MPC (LPV-MPC) exhibited suboptimal performance.
+To address this, the quadcopter is controlled via nonlinear MPC (NMPC), with the weighting parameters optimized through a genetic algorithm to minimize energy consumption while ensuring successful mission completion. Various formulations of the MPC objective function were evaluated, all yielding significantly superior results compared to LPV-MPC. Ultimately, the most effective objective function was selected, along with finely tuned parameters that deliver optimal trajectory tracking.
+For a high-level overview, refer to the accompanying short PowerPoint presentation.
+The codes for implementing the nonlinear MPC are provided as follows:
+
+1.Use GPOPS software to execute the trajectory generation code (leastenergymain.m).
+2.Run the genetic algorithm (ga_code.m) to obtain the optimal parameters (Q and R weights, along with the prediction horizon N).
+3.Finally, employ CASADI software to run the controller code (mtpmpc3tuning.m) and visualize the drone's trajectory.
