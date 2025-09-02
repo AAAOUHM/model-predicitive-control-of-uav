@@ -4,7 +4,7 @@ This project focuses on determining the minimum-energy trajectory for UAV quadco
 
 Initial experiments with **Linear Parameter-Varying MPC (LPV-MPC)** showed suboptimal performance. To improve this, we implemented **Nonlinear MPC (NMPC)**, optimizing the weighting parameters with a **genetic algorithm** to minimize energy consumption during mission completion.
 
-Multiple formulations of the MPC objective function were tested, all outperforming LPV-MPC. The best objective function, along with tuned parameters, was selected for optimal trajectory tracking.
+Multiple formulations of the MPC objective function were tested, all outperforming LPV-MPC. The best objective function, along with tuned parameters, was selected for optimal trajectory tracking along with minimal energy consumption.
 
 For a high-level overview, refer to the accompanying [PowerPoint presentation](link-to-ppt).
 
